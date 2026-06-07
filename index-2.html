@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Bài Tập Thực Hành - Nguyễn Chí Hưng</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #fff5f7;
+            color: #444444;
+            line-height: 1.6;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Trang Giới Thiệu */
+        .profile-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            border: 2px solid #ffb6c1;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 182, 193, 0.3);
+            border-radius: 50%;
+        }
+
+        .profile-name {
+            font-size: 36px;
+            color: #d81b60;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .profile-meta {
+            font-size: 18px;
+            color: #ff4081;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .profile-university {
+            font-size: 15px;
+            color: #666666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .profile-intro {
+            font-size: 16px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .profile-intro ul {
+            text-align: left;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #c2185b;
+            margin-bottom: 30px;
+            border-left: 6px solid #ff4081;
+            padding-left: 15px;
+            font-weight: 700;
+            margin-top: 40px;
+        }
+
+        /* Trang Dự Án */
+        .assignment-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 24px rgba(255, 182, 193, 0.15);
+            border: 1px solid #ffe4e1;
+            overflow: hidden;
+            display: table;
+            width: 100%;
+        }
+
+        .summary-side {
+            display: table-cell;
+            width: 65%;
+            padding: 35px;
+            vertical-align: top;
+        }
+
+        .action-side {
+            display: table-cell;
+            width: 35%;
+            padding: 35px;
+            background-color: #fff9fa;
+            vertical-align: middle;
+            text-align: center;
+            border-left: 2px dashed #ffccd5;
+        }
+
+        .assignment-num {
+            font-size: 13px;
+            color: #ff4081;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .assignment-title {
+            font-size: 22px;
+            color: #ad1457;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .assignment-text {
+            font-size: 15px;
+            color: #555555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .tech-tags {
+            margin-top: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #ffe4ec;
+            color: #d81b60;
+            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .btn {
+            display: block;
+            width: 85%;
+            margin: 12px auto;
+            padding: 14px 20px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: #ffffff;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .btn-view:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(255, 20, 147, 0.4);
+        }
+
+        .btn-download {
+            background-color: #ffffff;
+            color: #ff1493;
+            border: 2px solid #ff69b4;
+        }
+
+        .btn-download:hover {
+            background-color: #ffe4ec;
+            transform: translateY(-2px);
+        }
+
+        .action-tip {
+            font-size: 12px;
+            color: #999999;
+            margin-top: 8px;
+        }
+        
+        /* PHẦN TỔNG KẾT MỚI */
+        .summary-section {
+            background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 24px rgba(255, 182, 193, 0.15);
+            border: 2px dashed #ffb6c1;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .reflection-box {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #ff69b4;
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.08);
+        }
+        
+        .reflection-title {
+            font-size: 20px;
+            color: #c2185b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .reflection-box p {
+            color: #444;
+            font-size: 15.5px;
+            text-align: justify;
+        }
+        
+        .reflection-box ul {
+            margin-top: 10px;
+            margin-left: 20px;
+            color: #444;
+            font-size: 15.5px;
+        }
+        
+        .reflection-box li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ffccd5;
+            font-size: 14px;
+            color: #888888;
+        }
+
+        @media (max-width: 768px) {
+            .assignment-card {
+                display: block;
+            }
+            .summary-side {
+                display: block;
+                width: 100%;
+            }
+            .action-side {
+                display: block;
+                width: 100%;
+                border-left: none;
+                border-top: 2px dashed #ffccd5;
+                padding: 25px;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 1. TRANG GIỚI THIỆU -->
+    <div class="profile-card">
+        <div class="profile-name">Nguyễn Chí Hưng</div>
+        <div class="profile-meta">Ngành: Điện tử Viễn thông</div>
+        <div class="profile-university">Trường Đại học Công nghệ (UET) — Đại học Quốc gia Hà Nội</div>
+        
+        <div class="profile-intro">
+            <strong><span style="font-size: 18px;">👋 Xin chào!</span></strong>
+            <p style="margin-top: 10px;">Chào mừng bạn đến với Portfolio cá nhân của tôi. Định hướng phát triển của tôi là trở thành một kỹ sư nhạy bén với công nghệ, có khả năng kết hợp kiến thức nền tảng Viễn thông với các công cụ số và Trí tuệ nhân tạo (AI).</p>
+            <p style="margin-top: 10px;"><strong>Mục tiêu của Portfolio này:</strong></p>
+            <ul>
+                <li>Thể hiện hệ thống các kỹ năng số đã học hỏi và áp dụng thực tế qua 7 dự án/bài tập.</li>
+                <li>Lưu trữ sản phẩm cá nhân một cách chuyên nghiệp để dễ dàng truy cập, chia sẻ và đánh giá tiến độ học tập.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 2. TRANG DỰ ÁN -->
+    <div class="section-title">Trang Dự Án</div>
+
+    <div class="assignment-list">
+
+        <!-- BÀI TẬP 1 -->
+        <div class="assignment-card">
+            <div class="summary-side">
+                <span class="assignment-num">Bài tập 1 - Máy tính và các thiết bị ngoại vi</span>
+                <div class="assignment-title">Thao Tác Quản Lý Tệp Tin Trên Hệ Điều Hành</div>
+                <p class="assignment-text"><strong>Mục tiêu:</strong> Làm quen và rèn luyện kỹ năng quản lý dữ liệu số trên hệ điều hành Windows.<br>
+                <strong>Tóm tắt thực hiện:</strong> Thực hành chuyên sâu các tác vụ trên File Explorer: Tạo cấu trúc cây thư mục khoa học, định dạng file văn bản (.txt), và làm chủ các thao tác sao chép (Copy), di chuyển (Cut), đổi tên, xóa tệp tin để tối ưu hóa không gian lưu trữ cá nhân.</p>
+                <div class="tech-tags">
+                    <span class="tag">Windows OS</span>
+                    <span class="tag">File Explorer</span>
+                    <span class="tag">Data Management</span>
+                </div>
+            </div>
+            <div class="action-side">
+                <a href="bai1.pdf" target="_blank" class="btn btn-view">Xem trực tuyến PDF</a>
+                <a href="bai1.pdf" download class="btn btn-download">Tải xuống tài liệu</a>
+                <div class="action-tip">File cục bộ: bai1.pdf</div>
+            </div>
+        </div>
+
+        <!-- BÀI TẬP 2 -->
+        <div class="assignment-card">
+            <div class="summary-side">
+                <span class="assignment-num">Bài tập 2 - Khai thác dữ liệu và thông tin</span>
+                <div class="assignment-title">Đánh Giá Độ Tin Cậy Thông Tin Học Thuật</div>
+                <p class="assignment-text"><strong>Mục tiêu:</strong> Phát triển kỹ năng tìm kiếm và thẩm định tài liệu phục vụ nghiên cứu đại học.<br>
+                <strong>Tóm tắt thực hiện:</strong> Lựa chọn chủ đề "Deep Learning trong xử lý tín hiệu", tiến hành tìm kiếm và đánh giá 10 tài liệu tham khảo từ các nguồn uy tín (IEEE, ACM, Sách MIT Press...). Sử dụng thang điểm 5 tiêu chí (Tác giả, NXB, Phương pháp, Trích dẫn, Cập nhật) để phân loại xếp hạng tài liệu từ A+ đến B-.</p>
+                <div class="tech-tags">
+                    <span class="tag">Research Skills</span>
+                    <span class="tag">IEEE Xplore</span>
+                    <span class="tag">Academic Writing</span>
+                </div>
+            </div>
+            <div class="action-side">
+                <a href="bai2.pdf" target="_blank" class="btn btn-view">Xem trực tuyến PDF</a>
+                <a href="bai2.pdf" download class="btn btn-download">Tải xuống tài liệu</a>
+                <div class="action-tip">File cục bộ: bai2.pdf</div>
+            </div>
+        </div>
+
+        <!-- BÀI TẬP 3 -->
+        <div class="assignment-card">
+            <div class="summary-side">
+                <span class="assignment-num">Bài tập 3 - Tổng quan về trí tuệ nhân tạo</span>
+                <div class="assignment-title">Kỹ Thuật Xây Dựng Prompt AI Chuyên Sâu</div>
+                <p class="assignment-text"><strong>Mục tiêu:</strong> Tối ưu hóa chất lượng dữ liệu đầu ra từ mô hình ngôn ngữ lớn (LLM).<br>
+                <strong>Tóm tắt thực hiện:</strong> So sánh sự khác biệt giữa Prompt tự phát và Prompt có cấu trúc (Role - Context - Task - Constraint). Áp dụng thực tiễn vào bài toán viết mã Python tối ưu phân bổ băng thông (thuật toán Water-Filling), qua đó giảm 80% tỷ lệ ảo tưởng thông tin của AI.</p>
+                <div class="tech-tags">
+                    <span class="tag">Prompt Engineering</span>
+                    <span class="tag">LLM</span>
+                    <span class="tag">Python</span>
+                </div>
+            </div>
+            <div class="action-side">
+                <a href="bai3.pdf" target="_blank" class="btn btn-view">Xem trực tuyến PDF</a>
+                <a href="bai3.pdf" download class="btn btn-download">Tải xuống tài liệu</a>
+                <div class="action-tip">File cục bộ: bai3.pdf</div>
+            </div>
+        </div>
+
+        <!-- BÀI TẬP 4 -->
+        <div class="assignment-card">
+            <div class="summary-side">
+                <span class="assignment-num">Bài tập 4 - Giao tiếp và hợp tác trong môi trường số</span>
+                <div class="assignment-title">Quản Trị Dự Án Nhóm Trực Tuyến</div>
+                <p class="assignment-text"><strong>Mục tiêu:</strong> Làm chủ các nền tảng công nghệ để tối ưu hóa hiệu suất làm việc nhóm từ xa.<br>
+                <strong>Tóm tắt thực hiện:</strong> Thiết lập và vận hành dự án 5 thành viên thông qua bảng tiến độ Kanban trên Trello, biên tập nội dung thời gian thực qua Google Docs và tổ chức không gian lưu trữ, họp trực tuyến trên Microsoft Teams. Kết quả giúp rút ngắn 40% thời gian hội ý.</p>
+                <div class="tech-tags">
+                    <span class="tag">Trello / Kanban</span>
+                    <span class="tag">MS Teams</span>
+                    <span class="tag">Collaboration</span>
+                </div>
+            </div>
+            <div class="action-side">
+                <a href="bai4.pdf" target="_blank" class="btn btn-view">Xem trực tuyến PDF</a>
+                <a href="bai4.pdf" download class="btn btn-download">Tải xuống tài liệu</a>
+                <div class="action-tip">File cục bộ: bai4.pdf</div>
+            </div>
+        </div>
+
+        <!-- BÀI TẬP 5 -->
+        <div class="assignment-card">
+            <div class="summary-side">
+                <span class="assignment-num">Bài tập 5 - Sáng tạo nội dung số</span>
+                <div class="assignment-title">Ứng Dụng AI Tạo Sinh Trong Nội Dung Chuyên Ngành</div>
+                <p class="assignment-text"><strong>Mục tiêu:</strong> Tích hợp AI để nâng cao tốc độ và chất lượng sáng tạo tài liệu công nghệ.<br>
+                <strong>Tóm tắt thực hiện:</strong> Xây dựng bài phân tích về "Edge Intelligence". Quá trình phối hợp cộng sinh: Dùng LLM để lập dàn ý, soạn thảo; Dùng Midjourney/DALL-E 3 để tạo hình ảnh minh họa vi mạch 3D siêu thực; Con người đóng vai trò thẩm định kỹ thuật và hậu kỳ, giúp giảm 60% thời gian thiết kế.</p>
+                <div class="tech-tags">
+                    <span class="tag">Generative AI</span>
+                    <span class="tag">Midjourney</span>
+                    <span class="tag">Edge Intelligence</span>
+                </div>
+            </div>
+            <div class="action-side">
+                <a href="bai5.pdf" target="_blank" class="btn btn-view">Xem trực tuyến PDF</a>
+                <a href="bai5.pdf" download class="btn btn-download">Tải xuống tài liệu</a>
+                <div class="action-tip">File cục bộ: bai5.pdf</div>
+            </div>
+        </div>
+
+        <!-- BÀI TẬP 6 -->
+        <div class="assignment-card">
+            <div class="summary-side">
+                <span class="assignment-num">Bài tập 6 - An toàn và liêm chính học thuật</span>
+                <div class="assignment-title">Bộ Nguyên Tắc Sử Dụng AI Có Trách Nhiệm</div>
+                <p class="assignment-text"><strong>Mục tiêu:</strong> Thiết lập quy chuẩn đạo đức cá nhân khi tương tác với Trí tuệ nhân tạo.<br>
+                <strong>Tóm tắt thực hiện:</strong> Xây dựng hệ thống 4 tôn chỉ cốt lõi (4-Core Principles) cho sinh viên bao gồm: Minh bạch (khai báo công cụ AI), Thẩm định (kiểm tra chéo kết quả), Bảo mật dữ liệu (không đẩy thông tin mật lên AI), và Tôn trọng Bản quyền (tránh đạo văn). Đây là kim chỉ nam cho mọi hoạt động nghiên cứu.</p>
+                <div class="tech-tags">
+                    <span class="tag">AI Ethics</span>
+                    <span class="tag">Data Privacy</span>
+                    <span class="tag">Academic Integrity</span>
+                </div>
+            </div>
+            <div class="action-side">
+                <a href="bai6.pdf" target="_blank" class="btn btn-view">Xem trực tuyến PDF</a>
+                <a href="bai6.pdf" download class="btn btn-download">Tải xuống tài liệu</a>
+                <div class="action-tip">File cục bộ: bai6.pdf</div>
+            </div>
+        </div>
+
+        <!-- BÀI TẬP 7 -->
+        <div class="assignment-card">
+            <div class="summary-side">
+                <span class="assignment-num">Bài tập 7 - Đánh giá và tổng quan học thuật</span>
+                <div class="assignment-title">Tổng Quan Tài Liệu Bằng Công Cụ AI Chuyên Nghiệp</div>
+                <p class="assignment-text"><strong>Mục tiêu:</strong> Sử dụng các công cụ AI chuyên biệt để nghiên cứu sâu một chủ đề khoa học.<br>
+                <strong>Tóm tắt thực hiện:</strong> Ứng dụng Elicit/Consensus để rà soát hàng loạt bài báo về "Ứng dụng Graphene trong pin Lithium-ion". Lập bảng đối sánh phương pháp và kết quả từ 5 bài báo uy tín trong giai đoạn 2022-2023, từ đó rút ra kết luận tổng quan về khả năng tăng độ dẫn điện và dung lượng pin của Graphene.</p>
+                <div class="tech-tags">
+                    <span class="tag">Elicit / Consensus</span>
+                    <span class="tag">Literature Review</span>
+                    <span class="tag">Lithium-ion</span>
+                </div>
+            </div>
+            <div class="action-side">
+                <a href="bai7.pdf" target="_blank" class="btn btn-view">Xem trực tuyến PDF</a>
+                <a href="bai7.pdf" download class="btn btn-download">Tải xuống tài liệu</a>
+                <div class="action-tip">File cục bộ: bai7.pdf</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 3. TRANG TỔNG KẾT (CẬP NHẬT THEO YÊU CẦU MỚI NHẤT) -->
+    <div class="section-title">Trang Tổng Kết</div>
+    
+    <div class="summary-section">
+        
+        <!-- Điểm 1: Trải nghiệm và cảm nhận -->
+        <div class="reflection-box">
+            <h3 class="reflection-title">✨ Trải nghiệm và Cảm nhận cá nhân</h3>
+            <p>Quá trình xây dựng dự án Portfolio này thực sự là một trải nghiệm quý giá và mang tính bước ngoặt. Nó không chỉ giúp tôi nhìn lại toàn bộ hành trình thực hành và nghiên cứu qua 7 bài tập, mà còn là cơ hội tuyệt vời để tôi tự tay hệ thống hóa kiến thức. Cảm giác có thể biến những báo cáo kỹ thuật, những tệp tin nằm rời rạc trong máy tính thành một trang web trực quan, chuyên nghiệp mang lại cho tôi sự tự hào lớn. Tôi cảm thấy bản thân đã thực sự sẵn sàng để chuyển mình, từ việc chỉ học lý thuyết sang việc biết cách "đóng gói" năng lực cá nhân trong kỷ nguyên số.</p>
+        </div>
+
+        <!-- Điểm 2: Kiến thức và kỹ năng -->
+        <div class="reflection-box">
+            <h3 class="reflection-title">🧠 Kiến thức và Kỹ năng cốt lõi đã học được</h3>
+            <p>Qua chuỗi bài tập này, tôi đã trang bị được những kỹ năng sống còn đối với một kỹ sư công nghệ hiện đại:</p>
+            <ul>
+                <li><strong>Kỹ năng Khai thác và Đánh giá thông tin:</strong> Biết cách truy xuất tài liệu từ các nguồn IEEE, ACM uy tín và ứng dụng công cụ Elicit/Consensus để tổng quan tài liệu khoa học nhanh chóng.</li>
+                <li><strong>Kỹ năng Làm chủ AI Tạo sinh:</strong> Không chỉ dừng ở việc dùng AI, tôi đã học được cách xây dựng cấu trúc Prompt chuyên sâu (Role-Context-Task) và phối hợp sức người - sức máy trong thiết kế nội dung số (Midjourney/LLM).</li>
+                <li><strong>Kỹ năng Hợp tác & Đạo đức số:</strong> Thành thạo sử dụng Trello, MS Teams để quản lý dự án nhóm, đồng thời nhận thức sâu sắc về bộ nguyên tắc liêm chính học thuật (4-Core Principles) khi sử dụng trí tuệ nhân tạo.</li>
+            </ul>
+        </div>
+
+        <!-- Điểm 3: Tâm đắc và Thách thức -->
+        <div class="reflection-box" style="margin-bottom: 0;">
+            <h3 class="reflection-title">🎯 Điểm tâm đắc & Thách thức gặp phải</h3>
+            <p><strong>Điểm tôi tâm đắc nhất:</strong> Chính là sự phát hiện về khả năng "cộng sinh" giữa con người và AI. Khi làm bài tập số 3 và số 5, việc biết cách điều khiển AI bằng câu lệnh chuẩn đã giúp tôi giảm tới 60-80% thời gian xử lý các tác vụ lặp lại hay sai sót, từ đó tôi có nhiều thời gian hơn để rèn luyện tư duy phản biện cốt lõi.</p>
+            <p style="margin-top: 10px;"><strong>Thách thức gặp phải:</strong> Khó khăn lớn nhất trong quá trình xây dựng Portfolio này là làm sao để chọn lọc, tóm tắt và trình bày một khối lượng lớn thông tin chuyên ngành (từ vật liệu Graphene, vi mạch Edge Intelligence đến thuật toán Water-Filling) sao cho thật cô đọng, dễ hiểu nhưng không làm mất đi tính hàn lâm. Việc tìm cách giải quyết bài toán hiển thị và cấu trúc thư mục tĩnh (HTML liên kết tệp PDF) cũng đòi hỏi sự tỉ mỉ để người xem có trải nghiệm mượt mà nhất.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Nguyễn Chí Hưng - Sinh viên Khoa Điện tử Viễn thông - UET VNU. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
